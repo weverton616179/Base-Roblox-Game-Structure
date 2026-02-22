@@ -1,0 +1,18 @@
+# Project place file
+/GangLand.rbxlx
+
+# Roblox Studio lock files
+/*.rbxlx.lock
+/*.rbxl.lock
+
+#wally
+wally.lock
+sourcemap.json
+
+#pesde
+.pesde
+luau_packages
+lune_packages
+roblox_packages
+roblox_server_packages
+pesde.lock
