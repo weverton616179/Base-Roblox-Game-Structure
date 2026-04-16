@@ -2,6 +2,7 @@ local BaseProfileService = {}
 BaseProfileService.__index = BaseProfileService
 
 local Players = game:GetService("Players")
+local HttpService = game:GetService("HttpService")
 
 function BaseProfileService.new(serviceName: string, dataKey: string, template)
 	local self = setmetatable({}, BaseProfileService)
@@ -35,9 +36,14 @@ function BaseProfileService:ResetProfile(player: Player)
 	local profile = self.ProfileService:WaitForProfile(player)
 
 	if profile and profile.Data then
-		profile.Data[self.DataKey] = table.clone(self.Template)
+		local CloneTemplate = HttpService:JSONDecode(self.Template)
+		profile.Data[self.DataKey] = CloneTemplate
+		print("garage from player ", player, " created")
+
+		return profile.Data[self.DataKey]
 	else
 		print("Erro ao carregar o profile ou data em:", self.Name)
+		return
 	end
 end
 
@@ -51,7 +57,11 @@ function BaseProfileService:CreateProfileIfNotExist(player: Player)
 		else
 			print(self.DataKey .. " just exist")
 		end
+
+		return profile.Data[self.DataKey]
 	end
+
+	return
 end
 
 function BaseProfileService:DeleteProfile(player: Player)
@@ -68,8 +78,8 @@ function BaseProfileService:GetProfile(player: Player)
 		if profile.Data[self.DataKey] then
 			return profile.Data[self.DataKey]
 		else
-			print("Ainda não tem o profile")
-			return false
+			print("Ainda não tem o profile garage, criando...")
+			return self:ResetProfile(player)
 		end
 	else
 		print("Profile ou data não existe")

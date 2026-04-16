@@ -1,0 +1,36 @@
+-- these can be ignored if you are using the studio plugin
+option ClientOutput = "../archives/dealership/client.luau"
+option ServerOutput = "../archives/dealership/server.luau"
+option RemoteScope = "Dealership"
+ 
+struct CarInfo {
+    Name: string,
+    Price: u32,
+    Image: string,
+    Purchased: boolean
+}
+
+struct CarsPage {
+    maxPage: u32,
+    currentPage: u32,
+    itemsPerPage: u32,
+    tableSize: u32,
+    startIndex: u32,
+    endIndex: u32,
+    allItemsVisible: u32,
+    hasPreviousPage: boolean,
+    hasNextPage: boolean,
+
+    items: CarInfo[]
+}
+
+function GetCars {
+    Yield: Coroutine,
+    Data: struct {
+        SortBy: string,
+        SortByAscending: boolean,
+        Page: u32,
+        PerPage: u32,
+    },
+    Return: CarsPage
+}

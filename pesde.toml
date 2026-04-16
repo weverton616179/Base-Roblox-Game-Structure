@@ -19,6 +19,9 @@ sourcemap_generator = ".pesde/scripts/sourcemap_generator.luau"
 react = { wally = "core-packages/react", version = "^0.0.1" }
 inputter = { wally = "adammillsy/inputter", version = "0.1.3" }
 profilestore = { wally = "lm-loleris/profilestore", version = "1.0.3" }
+promise = { wally = "evaera/promise", version = "4.0.0" }
+fusion = { wally = "elttob/fusion", version = "0.3.0" }
+component = { wally = "sleitnick/component", version = "2.4.8" }
 #ProfileStore = { repo = "https://github.com/MadStudioRoblox/ProfileStore", rev = "main" }
 
 [dev_dependencies]
